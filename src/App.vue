@@ -1,23 +1,20 @@
 <template>
   <div>
-    <vue-c3 :handler="handler"></vue-c3>
+    <div id="chart" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import VueC3 from "vue-c3";
+import c3 from "c3";
 
-@Component({
-  components: {
-    VueC3
-  }
-})
+@Component
 export default class App extends Vue {
-  private handler: Vue = new Vue();
+  private chartApi!: c3.ChartAPI;
 
   private mounted() {
-    const options = {
+    const options: c3.ChartConfiguration = {
+      bindto: "#chart",
       data: {
         x: "x",
         columns: [
@@ -51,11 +48,12 @@ export default class App extends Vue {
         }
       }
     };
-    this.handler.$emit("init", options);
+
+    this.chartApi = c3.generate(options);
   }
 
   private beforeDestroy() {
-    this.handler.$destroy();
+    this.chartApi?.destroy();
   }
 }
 </script>
