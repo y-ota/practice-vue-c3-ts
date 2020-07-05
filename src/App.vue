@@ -12,7 +12,15 @@ import c3 from "c3";
 export default class App extends Vue {
   private chartApi!: c3.ChartAPI;
 
-  private mounted() {
+  private test(): Promise<string>{
+    return new Promise((resolve)=>{
+      resolve( "abcd");
+    });
+  }
+
+  private async mounted() {
+    console.log([[1,3],4].flat());
+    console.log(await this.test());
     const options: c3.ChartConfiguration = {
       bindto: "#chart",
       data: {

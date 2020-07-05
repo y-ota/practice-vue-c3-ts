@@ -17,16 +17,14 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "vue-c3": [
-        "src/3rd-party-types/vue-c3.d.ts"
       ]
     },
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "ES2017"
     ]
   },
   "include": [
